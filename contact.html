@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Munchify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --orange: #FF6B35; --near-black: #1C1C1E; --white: #FFFFFF;
+      --off-white: #F7F5F2; --warm-white: #FAF8F5; --gray: #636366;
+      --light-gray: #E5E5EA; --dim: #AEAEB2;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--near-black); -webkit-font-smoothing: antialiased; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 48px; display: flex; align-items: center; justify-content: space-between;
+      background: rgba(247,245,242,0.95); backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .nav-logo { text-decoration: none; font-family: 'Fraunces', serif; font-size: 24px; font-weight: 900; color: var(--near-black); letter-spacing: -0.5px; }
+    .nav-back { text-decoration: none; font-size: 14px; font-weight: 600; color: var(--gray); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+    .nav-back:hover { color: var(--near-black); }
+
+    .page-wrap { max-width: 720px; margin: 0 auto; padding: 120px 48px 80px; }
+    .page-label { font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+    .page-title { font-family: 'Fraunces', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 900; line-height: 1.05; letter-spacing: -1.5px; color: var(--near-black); margin-bottom: 16px; }
+    .page-sub { font-size: 18px; line-height: 1.65; color: var(--gray); margin-bottom: 56px; padding-bottom: 40px; border-bottom: 1px solid var(--light-gray); max-width: 500px; }
+
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 48px; }
+    .contact-card { background: var(--white); border: 1.5px solid var(--light-gray); border-radius: 20px; padding: 28px; transition: all 0.3s; text-decoration: none; display: block; }
+    .contact-card:hover { border-color: rgba(255,107,53,0.3); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); }
+    .contact-card-icon { width: 44px; height: 44px; border-radius: 12px; background: rgba(255,107,53,0.08); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .contact-card-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 700; color: var(--near-black); margin-bottom: 6px; letter-spacing: -0.2px; }
+    .contact-card-desc { font-size: 13px; color: var(--gray); line-height: 1.6; margin-bottom: 14px; }
+    .contact-card-link { font-size: 14px; font-weight: 600; color: var(--orange); }
+
+    .response-note { background: var(--warm-white); border: 1.5px solid var(--light-gray); border-radius: 16px; padding: 20px 24px; margin-bottom: 48px; display: flex; align-items: flex-start; gap: 14px; }
+    .response-note-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,107,53,0.08); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .response-note p { font-size: 14px; line-height: 1.7; color: var(--gray); }
+    .response-note strong { color: var(--near-black); }
+
+    .faq-section { margin-top: 16px; }
+    .faq-title { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 700; color: var(--near-black); margin-bottom: 24px; letter-spacing: -0.3px; }
+    .faq-item { border-bottom: 1px solid var(--light-gray); padding: 20px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 15px; font-weight: 700; color: var(--near-black); margin-bottom: 8px; }
+    .faq-a { font-size: 14px; line-height: 1.7; color: var(--gray); }
+    .faq-a a { color: var(--orange); font-weight: 600; text-decoration: none; }
+    .faq-a a:hover { text-decoration: underline; }
+
+    footer { background: #080808; padding: 40px 48px; text-align: center; margin-top: 80px; }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.25); }
+    .footer-links { display: flex; gap: 20px; justify-content: center; margin-top: 12px; }
+    .footer-links a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .page-wrap { padding: 100px 24px 60px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Munchify</a>
+  <a href="/" class="nav-back">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to home
+  </a>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-label">Get in touch</div>
+  <h1 class="page-title">We're here<br>to help.</h1>
+  <p class="page-sub">Whether it's a bug, a billing question, feedback, or just a great recipe idea — we read every email and we'll get back to you.</p>
+
+  <div class="contact-grid">
+    <a href="mailto:contact@munchify.app" class="contact-card">
+      <div class="contact-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <div class="contact-card-title">General Enquiries</div>
+      <div class="contact-card-desc">Questions about Munchify, features, or anything else on your mind.</div>
+      <div class="contact-card-link">contact@munchify.app</div>
+    </a>
+
+    <a href="mailto:contact@munchify.app?subject=Bug Report" class="contact-card">
+      <div class="contact-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      </div>
+      <div class="contact-card-title">Report a Bug</div>
+      <div class="contact-card-desc">Something not working right? Let us know and we'll fix it fast.</div>
+      <div class="contact-card-link">contact@munchify.app</div>
+    </a>
+
+    <a href="mailto:contact@munchify.app?subject=Billing Question" class="contact-card">
+      <div class="contact-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <div class="contact-card-title">Billing & Subscription</div>
+      <div class="contact-card-desc">Questions about your subscription, charges, or cancellation.</div>
+      <div class="contact-card-link">contact@munchify.app</div>
+    </a>
+
+    <a href="mailto:contact@munchify.app?subject=Privacy Request" class="contact-card">
+      <div class="contact-card-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="contact-card-title">Privacy & Data</div>
+      <div class="contact-card-desc">Data deletion requests, privacy questions, or account removal.</div>
+      <div class="contact-card-link">contact@munchify.app</div>
+    </a>
+  </div>
+
+  <div class="response-note">
+    <div class="response-note-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+    <p><strong>Response time:</strong> We aim to reply within 1–2 business days. For urgent issues — especially billing or account access — mention it in your subject line and we'll prioritize it.</p>
+  </div>
+
+  <div class="faq-section">
+    <h2 class="faq-title">Common questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I cancel my subscription?</div>
+      <div class="faq-a">Subscriptions are managed through Apple. Go to <strong>Settings → Apple ID → Subscriptions → Munchify</strong> and tap Cancel Subscription. Your access continues until the end of the current billing period.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">How do I delete my account and data?</div>
+      <div class="faq-a">Go to the <strong>Profile tab → Settings → Delete Account</strong>. This permanently removes your account and all associated data from our servers. You can also email us at <a href="mailto:contact@munchify.app">contact@munchify.app</a> and we'll handle it within 30 days.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Are the calorie estimates accurate?</div>
+      <div class="faq-a">AI nutritional estimates are good approximations — typically within 10–20% of actual values. They're based on visual analysis by GPT-4o combined with the USDA food database. You can always manually adjust any logged meal.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Does Munchify sell my data?</div>
+      <div class="faq-a">No. We never sell, rent, or share your personal data with advertisers or data brokers. See our <a href="/privacy.html">Privacy Policy</a> for the full details.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">Can I use Munchify if I have a medical condition or dietary restriction?</div>
+      <div class="faq-a">Munchify is a general wellness tool, not a medical device. If you have a diagnosed health condition, eating disorder, or are under a medically supervised diet, please consult your healthcare provider before relying on the app's recommendations.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q">I have a feature idea. Can I share it?</div>
+      <div class="faq-a">Yes — please do. Email us at <a href="mailto:contact@munchify.app">contact@munchify.app</a> with your idea. We read everything and many features in Munchify came from user suggestions.</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="footer-copy">&copy; 2026 Munchify. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
